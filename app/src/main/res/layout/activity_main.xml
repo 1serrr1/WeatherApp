@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="16dp">
+
+    <EditText
+        android:id="@+id/editTextCity"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Введите город"
+        android:inputType="textCapWords"
+        android:textSize="18sp"
+        android:padding="16dp"
+        android:layout_alignParentTop="true"
+        android:layout_marginTop="80dp" />
+
+    <Button
+        android:id="@+id/buttonGetWeather"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Получить погоду"
+        android:layout_below="@id/editTextCity"
+        android:layout_marginTop="16dp"
+        android:textSize="18sp"
+        android:padding="16dp"
+        android:layout_centerHorizontal="true"/>
+
+    <Button
+        android:id="@+id/buttonGetLocation"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Получить погоду по GPS"
+        android:layout_below="@id/buttonGetWeather"
+        android:layout_marginTop="16dp"
+        android:textSize="18sp"
+        android:padding="16dp"
+        android:layout_centerHorizontal="true"/>
+
+
+    <TextView
+        android:id="@+id/textViewWeather"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:layout_below="@id/buttonGetLocation"
+        android:textSize="18sp"
+        android:padding="16dp"
+        android:textAlignment="center"/>
+
+    <TextView
+        android:id="@+id/textViewForecast"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/textViewWeather"
+        android:layout_marginTop="16dp"
+        android:textSize="18sp"
+        android:padding="16dp"
+        android:textAlignment="center"/>
+
+    <ImageView
+        android:id="@+id/imageViewWeatherIcon"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/textViewWeather"
+        android:layout_marginTop="16dp"
+        android:contentDescription="Weather Icon"
+        android:layout_centerHorizontal="true"/>
+
+
+    <Button
+        android:id="@+id/buttonSettings"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Настройки"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentEnd="true"
+        android:layout_marginTop="16dp"
+        android:textSize="18sp"
+        android:layout_marginEnd="16dp"
+        android:padding="16dp"/>
+
+
+</RelativeLayout>
