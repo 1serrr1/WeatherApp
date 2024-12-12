@@ -121,7 +121,7 @@ public class MainActivity extends AppCompatActivity {
                     try {
                         double latitude = response.getJSONObject("coord").getDouble("lat");
                         double longitude = response.getJSONObject("coord").getDouble("lon");
-                        get7DayForecast(latitude, longitude);
+
                     } catch (JSONException e) {
                         e.printStackTrace();
                     }
@@ -132,48 +132,7 @@ public class MainActivity extends AppCompatActivity {
         requestQueue.add(jsonObjectRequest);
     }
 
-    private void get7DayForecast(double latitude, double longitude) {
-        String units = isCelsius ? "metric" : "imperial";
-        String url = "https://api.openweathermap.org/data/2.5/onecall?lat=" + latitude + "&lon=" + longitude + "&exclude=current,minutely,hourly,alerts&appid=" + API_KEY + "&units=" + units;
 
-        RequestQueue requestQueue = Volley.newRequestQueue(this);
-        JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.GET, url, null,
-                response -> {
-                    try {
-                        JSONArray daily = response.getJSONArray("daily");
-                        StringBuilder forecastBuilder = new StringBuilder("7-дневный прогноз:\n");
-
-                        for (int i = 0; i < daily.length(); i++) {
-                            JSONObject day = daily.getJSONObject(i);
-                            long sunrise = day.getLong("sunrise");
-                            long sunset = day.getLong("sunset");
-                            double tempDay = day.getJSONObject("temp").getDouble("day");
-                            double feelsLike = day.getJSONObject("feels_like").getDouble("day");
-                            double humidity = day.getDouble("humidity");
-                            double windSpeed = day.getDouble("wind_speed");
-                            String windDirection = day.getString("wind_deg") + "°";
-
-                            forecastBuilder.append("День ").append(i + 1).append(":\n")
-                                    .append("Температура: ").append(tempDay).append(isCelsius ? "°C" : "°F").append("\n")
-                                    .append("Ощущается как: ").append(feelsLike).append(isCelsius ? "°C" : "°F").append("\n")
-                                    .append("Влажность: ").append(humidity).append("%\n")
-                                    .append("Скорость ветра: ").append(windSpeed).append(" м/с\n")
-                                    .append("Направление ветра: ").append(windDirection).append("\n")
-                                    .append("Восход: ").append(convertUnixToTime(sunrise)).append("\n")
-                                    .append("Закат: ").append(convertUnixToTime(sunset)).append("\n\n");
-                        }
-
-                        textViewForecast.setText(forecastBuilder.toString());
-                    } catch (JSONException e) {
-                        e.printStackTrace();
-                        Toast.makeText(MainActivity.this, "Ошибка получения прогноза", Toast.LENGTH_SHORT).show();
-                    }
-                },
-                error -> Toast.makeText(MainActivity.this, "Ошибка сети", Toast.LENGTH_SHORT).show()
-        );
-
-        requestQueue.add(jsonObjectRequest);
-    }
 
     private void displayWeatherData(JSONObject response) {
         try {
@@ -251,7 +210,7 @@ public class MainActivity extends AppCompatActivity {
                     try {
                         double lat = response.getJSONObject("coord").getDouble("lat");
                         double lon = response.getJSONObject("coord").getDouble("lon");
-                        get7DayForecast(lat, lon);
+
                     } catch (JSONException e) {
                         e.printStackTrace();
                     }

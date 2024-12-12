@@ -22,7 +22,7 @@ import androidx.core.content.ContextCompat;
 public class SettingsActivity extends AppCompatActivity {
 
 
-    private Switch switchPushNotifications, switchLocationPermission, switchDarkTheme, switchTemperatureUnit;
+    private Switch switchLocationPermission, switchDarkTheme, switchTemperatureUnit;
     private Button buttonBack;
     private SharedPreferences sharedPreferences;
     private static final String PREFS_NAME = "app_settings";
@@ -36,13 +36,13 @@ public class SettingsActivity extends AppCompatActivity {
 
         sharedPreferences = getSharedPreferences(PREFS_NAME, MODE_PRIVATE);
 
-        switchPushNotifications = findViewById(R.id.switchPushNotifications);
+
         switchLocationPermission = findViewById(R.id.switchLocationPermission);
         switchDarkTheme = findViewById(R.id.switchDarkTheme);
         switchTemperatureUnit = findViewById(R.id.switchTemperatureUnit);
         buttonBack = findViewById(R.id.buttonBack);
 
-        switchPushNotifications.setChecked(sharedPreferences.getBoolean("push_notifications", true));
+       // switchPushNotifications.setChecked(sharedPreferences.getBoolean("push_notifications", true));
         switchLocationPermission.setChecked(sharedPreferences.getBoolean("location_permission", false));
         switchDarkTheme.setChecked(AppCompatDelegate.getDefaultNightMode() == AppCompatDelegate.MODE_NIGHT_YES);
         switchTemperatureUnit.setChecked(sharedPreferences.getBoolean("temperature_unit_celsius", true));
@@ -66,12 +66,12 @@ public class SettingsActivity extends AppCompatActivity {
             editor.apply();
         });
 
-        switchPushNotifications.setOnCheckedChangeListener((buttonView, isChecked) -> {
-            SharedPreferences.Editor editor = sharedPreferences.edit();
-            editor.putBoolean("push_notifications", isChecked);
-            editor.apply();
-            Toast.makeText(SettingsActivity.this, "Push уведомления: " + (isChecked ? "Включены" : "Отключены"), Toast.LENGTH_SHORT).show();
-        });
+       // switchPushNotifications.setOnCheckedChangeListener((buttonView, isChecked) -> {
+       //     SharedPreferences.Editor editor = sharedPreferences.edit();
+      //      editor.putBoolean("push_notifications", isChecked);
+      //      editor.apply();
+        //    Toast.makeText(SettingsActivity.this, "Push уведомления: " + (isChecked ? "Включены" : "Отключены"), Toast.LENGTH_SHORT).show();
+       // });
 
         // Разрешение на доступ к местоположению
         switchLocationPermission.setOnCheckedChangeListener((buttonView, isChecked) -> {
